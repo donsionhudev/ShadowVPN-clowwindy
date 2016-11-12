@@ -1,0 +1,20 @@
+language: c
+
+compiler:
+ - clang
+ - gcc
+
+before_script:
+ - sudo apt-get install clang
+ - git submodule init
+ - git submodule update
+ - ./autogen.sh
+
+script:
+ - ./configure && make
+ - make clean && scan-build ./configure && scan-build make
+
+env:
+  global:
+   - secure: "e1gTMxjeb31lbNlntCqKuc0UhXefSElcZOnAECOfm92IprOfOA8jRwlu/opXtpHJohldqag1Ujj0mzq7fy3F7vd8cLJxHVqb8x8g1l3HDa+hrydKzxkgku/V3t/ISFHdjI0L/RCNvdjUIFmVkuYTzETl/jl7RbYXMNPSdsZ8NzU="
+
